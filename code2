@@ -1,0 +1,67 @@
+int ledPins[] = {2,3,4,5,6,7,8,9};
+
+void setup()
+{
+  
+  for(int i = 0; i < 8; i++) {    
+    pinMode(ledPins[i],OUTPUT); 
+  }     
+}
+void loop(){              
+  
+  
+  inAndOut();             
+  oneAfterAnotherLoop();                        
+       
+                            
+}
+
+
+void inAndOut(){
+  
+  int delayTime = 100;  
+                       
+  int offLED1 = 2;     
+  int offLED2 = 5;   
+ 
+  for(int i = 3; i >= 0; i--) {
+    int onLED2 = 7 - i; 
+    digitalWrite(ledPins[offLED1], LOW); 
+    digitalWrite(ledPins[offLED2], LOW);
+    digitalWrite(ledPins[i], HIGH);      
+    digitalWrite(ledPins[onLED2], HIGH); 
+    offLED1 = i;                       
+    offLED2 = onLED2;
+    delay(delayTime);
+  }
+  for(int i = 0; i <= 3; i++) {
+    int onLED2 = 7 - i; 
+    digitalWrite(ledPins[offLED1], LOW);
+    digitalWrite(ledPins[offLED2], LOW);
+    digitalWrite(ledPins[i], HIGH);
+    digitalWrite(ledPins[onLED2], HIGH);
+    offLED1 = i;
+    offLED2 = onLED2;
+    delay(delayTime);
+  }
+
+}
+
+void oneAfterAnotherLoop()
+{
+  int delayTime = 100;  
+                        
+
+  
+  for(int i = 0; i <= 7; i++){
+    digitalWrite(ledPins[i], HIGH); 
+    delay(delayTime);               
+  }  
+
+ for(int i = 7; i >= 0; i--) {     
+                                    
+    digitalWrite(ledPins[i], LOW);  
+    delay(delayTime);               
+  }                                 
+                                    
+}
